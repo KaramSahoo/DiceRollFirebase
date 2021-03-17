@@ -1,0 +1,127 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Consolas;   
+}
+
+section{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: #8A2387;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F27121, #E94057, #8A2387);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F27121, #E94057, #8A2387); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo{
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+.logo img{
+    height: 30px;
+}
+
+.container{
+    position: absolute;
+    top: 20%;
+    width: 500px;
+    height: 350px;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #fff;
+}
+
+.dice__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    padding: 10px 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    margin: 0 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+#team__name{
+    font-size: 5vw;
+    color: white;
+    position: relative;
+    top: 10px;
+}
+
+.player1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+}
+
+.dice__container h2{
+    padding: 30px 0 40px 0;
+}
+
+.dice__container .dice{
+    padding: 50px 0;
+    margin: 0 15px;
+}
+
+.dice__container img{
+    height: 40px;
+}
+
+.roll{
+    position: absolute;
+    bottom: 10%;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 0 10px;
+    border: 1px solid rgba(255, 255, 255, 0.836);
+    transition: 0.3s ease-in-out;
+}
+
+.roll:hover{
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+button{
+    background: none;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+    outline: none;
+    border: 0;
+    padding: 20px 40px;
+}
+
+@media only screen and (max-width: 600px) {
+    .container{
+        background: none;
+        border: none;
+        box-shadow: none;
+        width: 100vw;
+        height: 200px;
+    }
+
+    .dice__container{
+        margin: 0;
+        padding: 0;
+    }
+  }

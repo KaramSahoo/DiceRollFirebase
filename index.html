@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="teaminput()">
+    <section>
+        <div class="logo">
+            <img src="WhiteLogo.png" alt="">
+        </div>
+        <h2 id="team__name"></h2>
+        <div class="container">
+            <div class="dice__container">
+                <div class="player1">
+                    <h2 id="num1">1</h2>
+                    <div class="dice">
+                        <img class="diceimg" id="d1" src="D1.png" alt="">
+                    </div>
+                </div>  
+                <div class="player1">
+                    <h2 id="num2">1</h2>
+                    <div class="dice">
+                        <img class="diceimg" id="d2" src="D1.png" alt="">
+                    </div>
+                </div>               
+            </div>
+        </div>
+        <div class="roll">
+            <button onclick="rolldice()">ROLL DICE</button>
+        </div>
+    </section>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-database.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+    // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAyo-V-GZAlo_Fjz1aXgjIqkxD5rNQF0Us",
+            authDomain: "matrix-dice.firebaseapp.com",
+            databaseURL: "https://matrix-dice-default-rtdb.firebaseio.com",
+            projectId: "matrix-dice",
+            storageBucket: "matrix-dice.appspot.com",
+            messagingSenderId: "456689204160",
+            appId: "1:456689204160:web:949f433c230ceffea7e625"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script>
+        function rolldice() {
+            const database = firebase.database();
+
+            let num1 = document.getElementById('num1');
+            let num2 = document.getElementById('num2');
+            let img1 = document.getElementById('d1');
+            let img2 = document.getElementById('d2');
+            let teamcode = document.getElementById('team__name');
+
+            let x = Math.floor((Math.random() * 6) + 1);
+            let y = Math.floor((Math.random() * 6) + 1); 
+
+            num1.innerHTML = x;
+            num2.innerHTML = y;
+            img1.src = `D${x}.png`;
+            img2.src = `D${y}.png`;     
+            
+            const rootRef = database.ref('/scores/' + teamcode.innerHTML);
+            const autoID = rootRef.push().key;
+            rootRef.child(autoID).set({
+                player_1_score: x,
+                player_2_score: y
+            })       
+        }
+
+        function teaminput() {
+            var doc = prompt("Enter team code", ""); 
+            if (doc != null) {
+                let num1 = document.getElementById('team__name');
+                num1.innerHTML = "Team " + doc;
+            }
+        }
+    </script>
+
+    
+</body>
+</html>

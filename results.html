@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <section>
+        <h1></h1>
+        <div class="roll">
+            <button onclick="fetch()">
+                Get Results
+            </button>
+        </div>
+        
+    </section>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-database.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+    // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAyo-V-GZAlo_Fjz1aXgjIqkxD5rNQF0Us",
+            authDomain: "matrix-dice.firebaseapp.com",
+            databaseURL: "https://matrix-dice-default-rtdb.firebaseio.com",
+            projectId: "matrix-dice",
+            storageBucket: "matrix-dice.appspot.com",
+            messagingSenderId: "456689204160",
+            appId: "1:456689204160:web:949f433c230ceffea7e625"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script>
+        function fetch() {
+            const database = firebase.database();
+            const rootRef = database.ref('/scores/');
+            rootRef.on("value", function (snapshot) {
+                snapshot.forEach(function (childSnapshot) {
+                    var data = childSnapshot.val();
+                    console.log(data);
+                })
+            })
+        }
+    </script>
+</body>
+</html>
